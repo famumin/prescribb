@@ -1,6 +1,5 @@
 "use strict";
 
-const scheduleBtn = document.getElementById("scheduleBtn");
 const nextBtn = document.getElementById("nextBtn");
 const closeScheduleBtn = document.getElementById("closeScheduleBtn");
 const hamburger = document.getElementById("hamburger");
@@ -12,6 +11,7 @@ const checkFormCloseBtn = document.getElementById("checkFormCloseBtn");
 const inputForm = document.getElementById("inputForm");
 const closeTopMessage = document.getElementById("closeTopMessage");
 const nav = document.getElementById("nav");
+const scheduleBtn = document.getElementById("scheduleBtn");
 
 const aside = document.getElementById("aside");
 const myScheduleBtn = document.getElementById("myScheduleBtn");
