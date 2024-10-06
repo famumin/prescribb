@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta
+      name="description"
+      content="Prescribb helps you track and manage your malaria medication schedule with precision. Get accurate timing for each dose, from start to finish, ensuring effective treatment. Stay on track with Prescribb!"
+    />
+
+    <!-- Content Security Policy -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'self'; script-src 'self' 'unsafe-inline' https://www.googletagmanager.com;"
+    />
+
+    <!-- Google tag (gtag.js) -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-6LQVQNSWRB"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-6LQVQNSWRB");
+    </script>
+
+    <link href="/dist/output.css" rel="stylesheet"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap"
+      rel="stylesheet"
+    />
+
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/public/favicon.ico"
+    />
+    <script src="/src/index.js" defer></script>
+    <title>Prescribb</title>
+  </head>
+
+  <body class="border-box">
+    <div id="topMessage" class="bg-green-600 sticky top-0 left-0 z-50 hidden">
+      <div
+        class="flex justify-center relative p-8 bg-green-700 text-white text-center md:text-[1.4rem]"
+      >
+        <button id="closeTopMessage" class="closeTopMessage">
+          <img
+            src="/img/close.png"
+            alt="close button"
+            class="size-3.5 absolute right-[1rem] top-[1rem]"
+          />
+        </button>
+
+        <p>
+          This site helps you schedule any anti-malarial doses to be taken at
+          intervals of 0, 8, 24, 36, 48, and 60 hours.
+        </p>
+      </div>
+    </div>
+    <div id="wrapper" class="flex flex-col relative overflow-hidden">
+      <div
+        id="dark"
+        class="w-full h-full bg-slate-800 hidden z-30 filter opacity-35 absolute"
+      ></div>
+      <header id="header">
+        <div
+          class="container mx-auto flex justify-between pt-5 px-[0.8rem] items-center h-[8rem] md:px-[6.4rem] mb-10 md:mb-40 z-50"
+        >
+          <div class="logo">
+            <a href="#home">
+              <img
+                src="/img/logo.png"
+                alt="prescribb logo"
+                class="w-[3.5rem] md:w-[4rem] lg:w-[4.8rem]"
+              />
+            </a>
+          </div>
+          <nav id="nav" class="flex items-center">
+            <button class="md:hidden">
+              <img
+                src="/img/menu.png"
+                id="hamburger"
+                alt="menu button"
+                class="size-14"
+              />
+            </button>
+            <ul class="text-[1.5rem] font-medium hidden md:flex">
+              <li class="px-4 py-3 md:p-5 lg:p-6 hover:text-green-600">
+                <a href="#header" id="homeBtn">Home</a>
+              </li>
+              <li class="px-4 py-3 md:p-5 lg:p-6 hover:text-green-600">
+                <a href="#schedule" id="myScheduleBtn">My Schedule</a>
+              </li>
+              <li class="px-4 py-3 md:p-5 lg:p-6 hover:text-green-600">
+                <a href="#about" id="aboutBtn">About</a>
+              </li>
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main id="main">
+        <section class="section" id="homeSection">
+          <div
+            id="noScheduleAlert"
+            class="max-w-[90rem] bg-green-600 text-white py-5 px-12 absolute left-1/2 -translate-x-1/2 top-[10rem] opacity-0 text-lg z-50"
+          >
+            No Schedule!
+          </div>
+          <div class="flex justify-center">
+            <div
+              id="scheduleContainer"
+              class="w-[30rem] mb-10 text-[1.2rem] lg:w-[35rem] min-h-60 bg-green-600 md:absolute md:right-[3.5rem] lg:right-[5.5rem] md:top-[8rem] z-30 text-center px-2 py-10 md:text-[1.4rem] text-white hidden"
+            ></div>
+          </div>
+
+          <aside id="side">
+            <div
+              id="aside"
+              class="w-[15rem] h-screen bg-green-600 absolute z-40 top-0 right-0 translate-x-full transition-transform duration-500 py-14"
+            >
+              <ul class="text-[1.5rem] font-medium text-white">
+                <li class="px-10 py-3 md:p-5 lg:p-6 hover:bg-green-600">
+                  <a href="#home" id="homeBtn">Home</a>
+                </li>
+
+                <li class="px-10 py-3 md:p-5 lg:p-6 hover:bg-green-600">
+                  <a href="#schedule" id="myScheduleBtnSide">My Schedule</a>
+                </li>
+
+                <li class="px-10 py-3 md:p-5 lg:p-6 hover:bg-green-600">
+                  <a href="#about" id="aboutBtn">About</a>
+                </li>
+              </ul>
+            </div>
+          </aside>
+          <div class="flex justify-center">
+            <div class="absolute top-[18rem] z-40">
+              <div
+                id="checkForm"
+                class="flex-col justify-center relative items-center w-[30rem] h-[19.2rem] md:w-[50rem] md:h-[35rem] bg-green-600 rounded-xl shadow-lg hidden"
+              >
+                <button id="checkFormCloseBtn">
+                  <img
+                    src="/img/close.png"
+                    alt="close button"
+                    class="w-4 absolute top-[2.25rem] right-[3.25rem]"
+                  />
+                </button>
+                <input
+                  type="text"
+                  id="inputForm"
+                  maxlength="8"
+                  required
+                  placeholder="Enter time eg ‘7:00 AM’"
+                  class="px-10 py-5 outline-none rounded-full mb-8 md:text-[1.4rem]"
+                />
+                <button
+                  id="checkFormBtn"
+                  class="border border-white text-white text-[1rem] md:text-[1.2rem] transition hover:bg-white hover:text-green-600 py-3 px-4 rounded-full"
+                >
+                  check schedule
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="container mx-auto flex flex-col items-center md:items-start md:pt-0 relative md:flex-row md:justify-center md:h-[90vh] md:px-16 z-0"
+          >
+            <div class="flex flex-col lg:w-[45.2rem]">
+              <div id="hero">
+                <img
+                  src="/img/mosquito.png"
+                  alt="mosquito image"
+                  class="size-[8rem] md:size-[10rem] lg:size-[12rem] absolute left-60 -top-16 md:left-[30rem] md:-top-16 lg:left-[42rem] lg:-top-28 xl:left-[55rem] xl:-top-28 z-30"
+                />
+                <div class="hero__text">
+                  <h1
+                    class="w-[25.3rem] md:w-[41.1rem] lg:w-[45.2rem] text-[2rem] md:text-[3.2rem] lg:text-[3.6rem] font-display md:font-black font-black leading-[2.4rem] md:leading-[4.4rem] lg:leading-[4.4rem] mb-[1rem] md:mb-[1.5rem] text-green-950"
+                  >
+                    Take your
+                    <span class="text-green-600">Anti-malarial</span> drugs on
+                    time!
+                  </h1>
+                  <h4
+                    class="w-[27.2rem] lg:w-[37.2rem] hero-paragraph text-green-950 mb-[5.6rem] leading-[2.4rem] text-[1.4rem] lg:text-[2rem] md:mb-[6rem] font-medium"
+                  >
+                    Stay Protected, Stay Healthy - Prevent Malaria with Timely
+                    Medication
+                  </h4>
+                </div>
+              </div>
+              <div class="w-full flex flex-col md:flex-row">
+                <button
+                  id="scheduleBtn"
+                  class="bg-green-600 mb-5 md:mr-4 md:self-start text-lg text-white md:text-[1.4rem] hover:bg-green-700 p-5 transition"
+                >
+                  schedule
+                </button>
+                <button
+                  id="nextBtn"
+                  class="border md:self-start border-green-600 text-lg md:text-[1.4rem] text-green-600 p-5 hover:bg-green-600 hover:text-white transition"
+                >
+                  Check next schedule
+                </button>
+                <button
+                  id="closeScheduleBtn"
+                  class="border md:self-start border-green-600 text-lg md:text-[1.4rem] text-green-600 p-5 hover:bg-green-600 hover:text-white transition hidden"
+                >
+                  Cancel schedule
+                </button>
+              </div>
+            </div>
+
+            <div
+              class="hero__image-col w-full flex justify-center bg-slate-100 md:bg-transparent md:w-fit mt-20 py-20 md:mt-0 md:py-0"
+            >
+              <img
+                src="/img/timedrug.png"
+                alt=""
+                class="drugtime-image md:w-[16rem] lg:w-[20rem] xl:w-[25rem]"
+              />
+            </div>
+          </div>
+        </section>
+
+        <section
+          id="askSection"
+          class="section bg-slate-100 opacity-0 transform translate-y-10 transition-all duration-1000 ease-out"
+        >
+          <div
+            class="container mx-auto flex flex-col items-center bg-white justify-center relative md:bg-slate-100"
+          >
+            <div
+              class="w-[50%] bg-gradient-to-r from-green-600 to-green-400 p-3 md:p-5 lg:p-8 text-center -skew-x-[15deg] absolute -top-[1.8rem] md:-top-[2.3rem] lg:-top-[3rem] z-0"
+            >
+              <h2
+                class="text-[1.5rem] lg:text-4xl font-bold text-white skew-x-[15deg]"
+              >
+                WHAT PEOPLE ASK
+              </h2>
+            </div>
+            <div class="my-20 md:mt-40">
+              <img src="/img/stories.png" alt="stories image" />
+            </div>
+          </div>
+        </section>
+        <section
+          class="section opacity-0 transform translate-y-10 transition-all duration-1000 ease-out"
+          id="aboutSection"
+        >
+          <div
+            class="container mx-auto bg-slate-100 md:bg-transparent flex justify-center items-center h-screen"
+          >
+            <div
+              class="flex flex-col text-[1.6rem] justify-between items-center m-10"
+            >
+              <h2
+                class="text-[1.5rem] font-display font-black md:text-[2rem] text-green-600 mb-10"
+              >
+                SCHEDULE WITH ACCURACY
+              </h2>
+              <div class="text-center text-white">
+                <div
+                  class="px-7 py-5 md:p-10 rounded-md bg-green-500 mb-4 hover:scale-105 transition"
+                >
+                  Designed to simplify anti-malarial medication scheduling
+                </div>
+                <div
+                  class="px-7 py-5 md:p-10 rounded-md bg-green-600 mb-4 hover:scale-105 transition"
+                >
+                  Allows users to check and adjust dose timings based on local
+                  time
+                </div>
+                <div
+                  class="px-7 py-5 md:p-10 rounded-md bg-green-600 mb-4 hover:scale-105 transition"
+                >
+                  Tracks doses with reminders anywhere
+                </div>
+                <div
+                  class="px-7 py-5 md:p-10 rounded-md bg-green-500 mb-10 hover:scale-105 transition"
+                >
+                  Ensures accurate timing for doses to effectively prevent
+                  malaria
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer
+        id="footerSection"
+        class="section bg-green-600 opacity-0 transform translate-y-10 transition-all duration-1000 ease-out"
+      >
+        <div
+          class="container mx-auto bg-green-600 h-[50vh] flex flex-col justify-between items-center py-10"
+        >
+          <div class="w-[29rem] text-center">
+            <h4 class="text-[2rem] md:text-[2.4rem] font-bold text-white">
+              Take control of your health with precision and ease
+            </h4>
+          </div>
+          <hr class="block w-[80%] z-10 bg-gray-100" />
+          <div
+            class="w-full flex justify-between items-center px-10 md:px-20 lg:px-40"
+          >
+            <div>
+              <img src="/img/logo-white.png" alt="" class="w-14 md:w-20" />
+              <p class="text-white">© 2024 prescribb. All rights reserved</p>
+            </div>
+            <div>
+              <ul
+                class="flex justify-center items-center text-white text-md lg:text-xl xl:text-2xl"
+              >
+                <li class="px-4 py-5 mr-3 hover:bg-green-700">
+                  <a href="#home" id="homeBtn">Home</a>
+                </li>
+                <li class="px-4 py-5 hover:bg-green-700">
+                  <a href="#about" id="aboutBtn">About</a>
+                </li>
+                <li class="px-4 py-5 mr-3 hover:bg-green-700">
+                  <a href="#askSection" id="faqsBtn">FAQs</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </footer>
+    </div>
+  </body>
+</html>

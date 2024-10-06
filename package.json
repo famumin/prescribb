@@ -1,0 +1,16 @@
+{
+  "name": "prescribb",
+  "version": "1.0.0",
+  "description": "Prescribb is an intuitive app that help users manage their medication schedules, with the focus on anti-malarial drugs",
+  "scripts": {
+    "build:css": "npx tailwindcss -i ./src/styles.css -o ./dist/output.css --watch",
+    "build": "parcel build ./src/index.html",
+    "start": "parcel ./src/index.html"
+  },
+  "author": "famumin",
+  "license": "ISC",
+  "devDependencies": {
+    "parcel": "^2.12.0",
+    "tailwindcss": "^3.4.13"
+  }
+}
